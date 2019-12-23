@@ -16,8 +16,9 @@
 
 package com.example.android.android_me.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.android.android_me.R;
 
@@ -28,5 +29,16 @@ public class AndroidMeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
+
+        BodyPartFragment headFragment = BodyPartFragment.createInstance("head");
+        BodyPartFragment bodyFragment = BodyPartFragment.createInstance("body");
+        BodyPartFragment legsFragment = BodyPartFragment.createInstance("legs");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .add(R.id.head_container, headFragment)
+                .add(R.id.body_container, bodyFragment)
+                .add(R.id.legs_container, legsFragment)
+                .commit();
     }
 }
