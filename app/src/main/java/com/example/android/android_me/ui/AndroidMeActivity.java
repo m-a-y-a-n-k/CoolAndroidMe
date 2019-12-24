@@ -16,6 +16,7 @@
 
 package com.example.android.android_me.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -31,9 +32,13 @@ public class AndroidMeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_android_me);
 
         if(savedInstanceState == null){
-            BodyPartFragment headFragment = BodyPartFragment.createInstance("head");
-            BodyPartFragment bodyFragment = BodyPartFragment.createInstance("body");
-            BodyPartFragment legsFragment = BodyPartFragment.createInstance("legs");
+
+            Intent main = getIntent();
+            Bundle data = main.getExtras();
+
+            BodyPartFragment headFragment = BodyPartFragment.createInstance("head", data.getInt("headIndex"));
+            BodyPartFragment bodyFragment = BodyPartFragment.createInstance("body", data.getInt("bodyIndex"));
+            BodyPartFragment legsFragment = BodyPartFragment.createInstance("legs", data.getInt("legIndex"));
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()

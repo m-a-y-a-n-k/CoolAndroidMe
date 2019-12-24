@@ -25,10 +25,11 @@ public class BodyPartFragment extends Fragment {
         bodyPartIndex = 0;
     }
 
-    public static BodyPartFragment createInstance(String bodyPart) {
+    public static BodyPartFragment createInstance(String bodyPart, Integer index) {
         BodyPartFragment fragment = new BodyPartFragment();
         Bundle args = new Bundle();
         args.putString(BODY_PART, bodyPart);
+        args.putInt(LIST_INDEX, index);
         fragment.setArguments(args);           //set
         return fragment;
     }
@@ -36,6 +37,8 @@ public class BodyPartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        bodyPartIndex = getArguments().getInt(LIST_INDEX);
 
         if(savedInstanceState != null){
             bodyPartIndex = savedInstanceState.getInt(LIST_INDEX);
